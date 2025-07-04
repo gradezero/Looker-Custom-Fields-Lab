@@ -1,0 +1,86 @@
+# Looker Lab Report: Empowering Analytics with Custom Fields
+
+## Project Overview
+
+This report details the exercises performed in the "Using Custom Fields in Looker Explores" lab (GSP983). The primary objective of this lab was to demonstrate how non-developer users can leverage Looker's custom field capabilities—including custom measures, custom groupings, and table calculations—to perform flexible and in-depth data analysis without requiring LookML development. This significantly enhances the self-service analytics capabilities for business users.
+
+## Objectives Achieved
+
+Throughout this lab, I successfully learned and applied the following concepts:
+
+1.  **Creation of Custom Measures:** Derived new aggregate fields from existing dimensions.
+2.  **Implementation of Custom Groupings:** Categorized dimension values into custom groups for streamlined analysis.
+3.  **Application of Filters to Custom Measures:** Refined query results by applying conditions directly to aggregated custom fields.
+4.  **Utilization of Table Calculations:** Performed on-the-fly computations on query results for deeper insights.
+
+## Lab Environment & Setup
+
+The lab was conducted within a temporary Google Cloud environment, providing a live Looker instance. Access was granted using temporary credentials, ensuring no interference with personal accounts. The use of an Incognito browser window facilitated a clean and isolated session.
+
+## Detailed Lab Activities
+
+### Task 1: Creating a Custom Measure
+
+**Purpose:** To generate new aggregate metrics (measures) from existing dimensions without LookML. This allows for quick calculation of averages, sums, counts, etc.
+
+**Methodology:**
+1.  Accessed the `Order Items` Explore within the `E-Commerce Training` model.
+2.  **Method 1 (Quick Aggregate):** Used the three-dot options menu next to the `Inventory Items > Cost` dimension and selected `Aggregate > Average`. This immediately added a basic "Average Cost" custom measure.
+3.  **Method 2 (Detailed Custom Measure):** Navigated to the `Custom Fields` section, clicked `+ Add`, and selected `Custom Measure`.
+    * Configured the measure to target `Inventory Items > Cost`.
+    * Set the `Measure type` to `Average`.
+    * Named the measure "Average of Cost".
+    * Applied formatting: `U.S. Dollars` with `2 Decimals` for better readability.
+
+**Outcome:** Two distinct "Average of Cost" custom measures were created, demonstrating both quick and detailed creation methods. These measures instantly appeared in the Explore's "Custom Fields" section, ready for use in queries.
+
+### Task 2: Creating a Custom Grouping
+
+**Purpose:** To define ad-hoc categories or groups for dimension values, simplifying analysis and reporting by consolidating disparate data points (e.g., grouping states into regions).
+
+**Methodology:**
+1.  Selected the second "Average of Cost" custom measure and the `Inventory Items > Product Name` dimension.
+2.  Filtered `Users > Country` to `is equal to USA`.
+3.  Clicked the three-dot options menu next to `Users > State` and selected `Group`.
+4.  Created a new group named "Pacific Northwest" and included `Oregon`, `Idaho`, and `Washington`.
+5.  Checked "Group remaining values" to aggregate all other states into an "Other" category.
+6.  Added the newly created "State Groups" custom field to the Explore and executed the query.
+
+**Outcome:** The query results displayed product average costs categorized by "Pacific Northwest" and "Other" state groupings, providing a higher-level view of geographical data than individual states.
+
+### Task 3: Adding a Filter to a Custom Measure
+
+**Purpose:** To refine the query results by applying conditions directly to the values of a custom measure, allowing for focused analysis on specific thresholds.
+
+**Methodology:**
+1.  From the previous Explore, navigated to the `Custom Fields` section.
+2.  Clicked the "Filter by field" icon for the "Average of Cost" (the second one created).
+3.  Set the filter condition to `is greater than` and the value to `200`.
+4.  Re-ran the query.
+
+**Outcome:** The results were filtered to display only those product names where the *average cost* was greater than $200 USD, demonstrating how to narrow down aggregated data.
+
+### Task 4: Using Table Calculations
+
+**Purpose:** To perform on-the-fly calculations directly within the data table of an Explore, leveraging query results to derive new insights (e.g., percentages, running totals) without modifying the LookML model.
+
+**Methodology:**
+1.  Added the `Order Items > Order Count` measure to the Explore.
+2.  In the data results table, clicked the `Settings` icon (`⚙️`) on the `Order Count` column.
+3.  Selected `Calculations > % of column`.
+4.  Re-ran the query.
+
+**Outcome:** A new column was dynamically added to the Explore results, displaying the percentage of the total order count for each row. This provided immediate insights into the popularity or contribution of each product within its respective state group.
+
+## Conclusion
+
+This lab provided invaluable hands-on experience with Looker's custom field capabilities. By mastering custom measures, custom groupings, and table calculations, I am now better equipped to perform advanced, ad-hoc data analysis within Looker without requiring developer intervention. These features are crucial for enabling self-service analytics and empowering business users to derive quicker, more targeted insights from their data. The ability to dynamically create and manipulate fields directly within Explores significantly enhances the flexibility and speed of data exploration.
+
+## Next Steps
+
+Further exploration could involve:
+* Experimenting with more complex custom measure types and Looker expressions.
+* Utilizing more advanced table calculations to analyze trends and differences.
+* Understanding how custom fields interact with Looker's dashboard and reporting features.
+
+---
